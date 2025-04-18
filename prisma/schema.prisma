@@ -1,0 +1,30 @@
+model Profile {
+  id          String  @id
+  level       Int
+  area        String
+  maxArea     String
+  timeTravel  Int
+  coolness    Int
+  user        User    @relation(fields: [id], references: [id])
+}
+
+model Horse {
+  id        String  @id
+  type      String
+  tier      Int
+  level     Int
+  epicness  Int
+}
+
+model User {
+  id       String   @id
+  Profile  Profile?
+}
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
