@@ -27,24 +27,6 @@ client.voidCheckData = new Map();
     commandHandler(client);
     eventHandler(client);
 
-    client.on('messageCreate', async (message) => {
-      try {
-        // Handle commands
-        if (message.content.startsWith('?')) {
-          const args = message.content.slice(1).trim().split(/ +/);
-          const commandName = args.shift().toLowerCase();
-          const command = client.commands.get(commandName);
-          
-          if (command) {
-            await command.execute(message, args, client);
-          }
-          return;
-        }
-        
-      } catch (error) {
-        console.error('Error in message handler:', error);
-      }
-    });
 
     await client.login(process.env.TOKEN);
   } catch (error) {
